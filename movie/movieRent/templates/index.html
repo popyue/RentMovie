@@ -6,9 +6,9 @@
 <p> WelCome to Movie Store </p>
 
 <input name="q" type="text" placeholder="Search...">
-
+<button>
 <ul>
-	<li></li>
+	<li {% if not category %}class="active"{% endif %}><a href="{% url "movieRent:index"%}">All</a></li>
 </ul>
 
 {% endblock %}
