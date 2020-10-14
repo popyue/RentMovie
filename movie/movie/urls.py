@@ -19,4 +19,5 @@ urlpatterns = [
 	path('', include('movieRent.urls')),
     path('admin/', admin.site.urls),
     path('home/', include('movieRent.urls', namespace='movieRent')),
+    path('cart/', include('cart.urls', namespace='cart')),
 ]
