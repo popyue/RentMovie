@@ -1,14 +1,46 @@
 {% extends "base_generic.html" %}
 
 
+{% block title %}
+    {% if category %}{{ category.name }}{% else %}Movies{% endif %}
+{% endblock %}
+
+
 {% block content %}
-<h1> LaGuDen Movie Store </h1>
-<p> WelCome to Movie Store </p>
 
-<input name="q" type="text" placeholder="Search...">
-<button>
-<ul>
-	<li {% if not category %}class="active"{% endif %}><a href="{% url "movieRent:index"%}">All</a></li>
-</ul>
+<div class="row">
+	<div class="col-md-2">
+		<h3> Categories </h3>
+		<ul class= "nav nav-pills nav-stacked">	
+			<li {% if category.slug == c.slug %}class="active"{% endif %}><a href="{% url "movieRent:index" %}">All</a></li>
 
+			{% for c in categories %}
+				<li {% if category.slug == c.slug %}class="active"{% endif %}>
+					<a href="{{ c.get_absolute_url }}">{{ c.category_name }}</a>
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+	<div class="col-md-9">
+		<h2>{% if category %}{{ category.name }}{% else %}Movies{% endif %}</h2>
+
+		<input name="search" type="text" placeholder="Search...">
+		<button>Go</button>
+		<!--Page Content-->
+		<div class="row">
+			{% for movie in movies %}
+			{{ movie.name }}
+			<div class="col-md-4">
+				<div class="thumbnail">
+					<a href="{{ movie.get_absolute_url }}">
+						<img src="{% if movie.picture %}{{ movie.picture.url }}
+						{% else %}{% load static %}{% static "movie_pic/no_image.png" %} {% endif %}">
+                    </a>
+                    <a href="{{ movie.get_absolute_url }}">{{ movie.movie_name }}</a><br>
+                    ${{ movie.price }}
+			</div>
+			{% endfor %}
+		</div> 
+	</div>
+</div>
 {% endblock %}
