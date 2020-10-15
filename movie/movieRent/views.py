@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.views import generic
 from .models import Category, Movie
-
+from cart.forms import CartAddMovieForm
 
 # Create your views here.
 def index(request, category_slug=None):
@@ -27,7 +27,8 @@ def movie_content(request, movie_id, slug):
 		id=movie_id,
 		slug=slug,
 		available=True)
-
+	cart_movie_form = CartAddMovieForm()
 	return render(request,
-		'movie/detail.html', {'movie': movie})
+		'movie/detail.html', {'movie': movie,
+		'cart_movie_form': cart_movie_form})
 

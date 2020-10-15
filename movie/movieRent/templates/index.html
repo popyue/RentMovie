@@ -12,8 +12,8 @@
 	<div class="col-md-2">
 		<h3> Categories </h3>
 		<ul class= "nav nav-pills nav-stacked">	
-			<li {% if category.slug == c.slug %}class="active"{% endif %}><a href="{% url "movieRent:index" %}">All</a></li>
-
+			<li {% if category.slug == c.slug %}class="active"{% endif %}>
+				<a href="{% url "movieRent:index" %}">All</a></li>
 			{% for c in categories %}
 				<li {% if category.slug == c.slug %}class="active"{% endif %}>
 					<a href="{{ c.get_absolute_url }}">{{ c.category_name }}</a>
@@ -22,15 +22,19 @@
 		</ul>
 	</div>
 	<div class="col-md-9">
-		<h2>{% if category %}{{ category.name }}{% else %}Movies{% endif %}</h2>
-
-		<input name="search" type="text" placeholder="Search...">
-		<button>Go</button>
+		<h2>{% if category %}{{ category.category_name }}{% else %}Movies{% endif %}</h2>
+		<div class="row">
+		<div class="col-md-6">
+			<div class="search">
+				<input name="search" type="text" placeholder="Search...">
+				<button class="search-btn">Go</button>
+			</div>
+		</div>
+		</div>
 		<!--Page Content-->
 		<div class="row">
 			{% for movie in movies %}
-			{{ movie.name }}
-			<div class="col-md-4">
+			<div class="col-md-6">
 				<div class="thumbnail">
 					<a href="{{ movie.get_absolute_url }}">
 						<img src="{% if movie.picture %}{{ movie.picture.url }}
@@ -39,8 +43,8 @@
                     <a href="{{ movie.get_absolute_url }}">{{ movie.movie_name }}</a><br>
                     ${{ movie.price }}
 			</div>
-			{% endfor %}
 		</div> 
+		{% endfor %}
 	</div>
 </div>
 {% endblock %}

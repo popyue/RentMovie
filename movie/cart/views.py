@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_POST
 
 from movieRent.models import Movie
-from .cart import cart
+from .cart import Cart
 from .forms import CartAddMovieForm
 
 # Create your views here.
