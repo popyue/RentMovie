@@ -26,7 +26,7 @@
                                     <label>${{ movie.price }}</label></h3>
                             </div>
                         </div>
-                        <p>{{ movie.movie_describe }}</p>
+                        <p>{{ movie_name.movie_describe }}</p>
                         <h2><a href="{{ movie.category.get_absolute_url }}">{{ movie.category }}</a></h2>
                         <form action="{% url "cart:cart_add" movie.id %}" method="post">
                             {% csrf_token %}

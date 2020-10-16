@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 
 from cart.cart import Cart
 from .forms import OrderCreateForm
@@ -22,7 +22,9 @@ def order_create(request):
 
 			# clear the cart 
 			cart.clear()
-			order_create(order.id)
+			print("11order id is {}".format(order.id))
+			print("22request is {}".format(request))
+			#order_create(order.id)
 			request.session['order_id'] = order.id
 			# redirect to the payment
 			return redirect('payment:process')

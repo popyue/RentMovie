@@ -11,6 +11,7 @@ class Category(models.Model):
 		default=None)
 	
 	class Meta:
+		db_table = 'CATEGORY'
 		ordering = ('category_name',)
 		verbose_name = 'category'
 		verbose_name_plural = 'categories'
@@ -39,6 +40,7 @@ class Movie(models.Model):
 	available = models.BooleanField(default=True)
 	
 	class Meta:
+		db_table = 'MOVIE'
 		ordering = ('movie_name',)
 		index_together = (('id', 'slug'),)
 	

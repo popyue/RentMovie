@@ -2,7 +2,7 @@
 
 
 {% block title %}
-    {% if category %}{{ category.name }}{% else %}Movies{% endif %}
+    {% if category %}{{ category.category_name }}{% else %}Movies{% endif %}
 {% endblock %}
 
 
@@ -25,10 +25,10 @@
 		<h2>{% if category %}{{ category.category_name }}{% else %}Movies{% endif %}</h2>
 		<div class="row">
 		<div class="col-md-6">
-			<div class="search">
-				<input name="search" type="text" placeholder="Search...">
-				<button class="search-btn">Go</button>
-			</div>
+			<form class="search" action="{% url "movieRent:searchbar" %}" method="get">
+				<input name="search" type="text" placeholder="Search..."/>
+				<button class="search-btn" type="submit">Go</button>
+			</form>
 		</div>
 		</div>
 		<!--Page Content-->

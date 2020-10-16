@@ -11,6 +11,7 @@ from orders.models import Order
 
 def payment_process(request):
 	order_id = request.session.get('order_id')
+	print("payment_process_order_id:{}".format(order_id))
 	order = get_object_or_404(Order, id=order_id)
 	host = request.get_host()
 	paypal_dict = {
