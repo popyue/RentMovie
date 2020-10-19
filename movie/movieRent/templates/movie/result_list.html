@@ -1,0 +1,53 @@
+{% extends "base_generic.html" %}
+{% load bootstrap3 %}
+
+{% block title %}
+	{% if category %}{{ category.category_name }}{% else %}Movies{% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+	<div class="col-md-2">
+		<h3> Categories </h3>
+		<ul class="nav nav-pills nav-stacked">
+			<li {% if category.slug == c.slug %}class="active"{% endif %}>
+				<a href="{% url "movieRent:index" %}">All</a></li>
+			{% for c in categories %}
+				<li {% if category.slug == c.slug %}class="active"{% endif %}>
+					<a href="{{ c.get_absolute_url }}">{{ c.category_name }}</a>
+				</li>
+			{% endfor %}
+		</ul>
+	</div>
+	<div class="col-md-9">
+		<h2>Search Title : {% if movie %}{{ movie.movie_name }}{% else %}Movies{% endif %}</h2>
+		<div class="row">
+			<div class="col-md-6">
+				<form class="search" action="{% url "movieRent:searchbar" %}" method="get">
+					<input name="search" type="text" placeholder="Search ..."/>
+					<button class="search-btn" type="submit"> Go </button>
+				</form>
+			</div>
+		</div>
+		<!-- Search Result -->
+		<div class="row">
+			{% for mov in movie %}
+				<div class="col-md-6">
+					<div class="thumbnail">
+						<a href="{{ mov.get_absolute_url }}">
+						<img src="{% if mov.picture %}{{ mov.picture.url }}
+						{% else %}{% load static %}{% static "movie_pic/no_image.png" %} {% endif %}">
+                    	</a>
+                    	<a href="{{ mov.get_absolute_url }}">{{ mvo.movie_name }}</a><br>
+                    	${{ mov.price }}
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>
+
+{% endblock %}
+
+	
