@@ -2,7 +2,7 @@
 {% load bootstrap3 %}
 
 {% block title %}
-    {% if category %}{{ category.title }}{% else %}Movies{% endif %}
+    {% if category %}{{ category.title | safe }}{% else %}Movies{% endif %}
 {% endblock %}
 
 {% block content %}
@@ -29,7 +29,7 @@
                         <p>{{ movie_name.movie_describe }}</p>
                         <h2><a href="{{ movie.category.get_absolute_url }}">{{ movie.category }}</a></h2>
                         <form action="{% url "cart:cart_add" movie.id %}" method="post">
-                            {% csrf_token %}
+                            <!--{% csrf_token %}-->
                             {% bootstrap_form cart_movie_form %}
                             {% buttons %}
                                 <button type="submit" class="btn btn-success btn-movie">

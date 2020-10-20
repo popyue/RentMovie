@@ -1,10 +1,6 @@
 from django.contrib import admin
 from .models import Category, Movie
-
 # Register your models here.
-# Login 
-# U : admin
-# P : movieadmin!QAZ
 
 
 class CategoryAdmin(admin.ModelAdmin):

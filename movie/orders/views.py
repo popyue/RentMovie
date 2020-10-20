@@ -4,10 +4,11 @@ from cart.cart import Cart
 from .forms import OrderCreateForm
 from .models import OrderItem
 from .task import order_created
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 
-
+@csrf_exempt
 def order_create(request):
 	cart = Cart(request)
 	if request.method == 'POST':

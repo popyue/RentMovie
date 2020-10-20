@@ -17,7 +17,10 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-
+# Register your models here.
+# Login 
+# U : admin
+# P : movieadmin!QAZ
 
 urlpatterns = [
 	path('', include('movieRent.urls')),

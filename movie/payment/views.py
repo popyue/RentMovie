@@ -9,6 +9,7 @@ from orders.models import Order
 # Create your views here.
 
 
+@csrf_exempt
 def payment_process(request):
 	order_id = request.session.get('order_id')
 	print("payment_process_order_id:{}".format(order_id))

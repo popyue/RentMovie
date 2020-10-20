@@ -40,7 +40,7 @@
                             </td>
                             <td class="col-sm-1 col-md-1" style="text-align: center">
                                 <form action="{% url "cart:cart_add" movie.id %}" method="post">
-                                    {% csrf_token %}
+                                    <!--{% csrf_token %}-->
                                     {% bootstrap_field item.update_quantity_form.quantity show_label=False %}
                                     {% bootstrap_field item.update_quantity_form.update %}
                                     {% buttons %}

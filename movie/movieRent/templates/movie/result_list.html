@@ -2,7 +2,7 @@
 {% load bootstrap3 %}
 
 {% block title %}
-	{% if category %}{{ category.category_name }}{% else %}Movies{% endif %}
+	{% if category %}{{ category.category_name | safe }}{% else %}Movies{% endif %}
 {% endblock %}
 
 {% block content %}
@@ -21,7 +21,6 @@
 		</ul>
 	</div>
 	<div class="col-md-9">
-		<h2>Search Title : {% if movie %}{{ movie.movie_name }}{% else %}Movies{% endif %}</h2>
 		<div class="row">
 			<div class="col-md-6">
 				<form class="search" action="{% url "movieRent:searchbar" %}" method="get">
@@ -33,6 +32,7 @@
 		<!-- Search Result -->
 		<div class="row">
 			{% for mov in movie %}
+				<h2>Search Title : {% if movie %}{{ mov.movie_name | safe }}{% else %}Movies{% endif %}</h2>
 				<div class="col-md-6">
 					<div class="thumbnail">
 						<a href="{{ mov.get_absolute_url }}">

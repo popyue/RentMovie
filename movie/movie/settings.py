@@ -14,9 +14,11 @@ from pathlib import Path
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-#BASE_DIR = Path(__file__).resolve().parent.parent
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# For Django 3.1
+#BASE_DIR = Path(__file__).resolve().parent.parent
+# For Django 2.2
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -28,7 +30,7 @@ SECRET_KEY = 'ut0io2557#1^hn^#**akztpc7+5wi*behf8#s46cfj6o=52oz-'
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
+ADMINS = (('Leo', 'leo@example.com'))
 
 # Application definition
 
@@ -51,11 +53,13 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    #'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+X_FRAME_OPTIONS = 'ALLOW-FROM *'
 
 ROOT_URLCONF = 'movie.urls'
 
@@ -90,7 +94,9 @@ PAYPAL_TEST = True
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
+        # For Django 2.2
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        # For Django 3.1
         #'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
@@ -133,6 +139,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
 CART_SESSION_ID = 'cart'
+
 MEDIA_URL = '/media/'
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+

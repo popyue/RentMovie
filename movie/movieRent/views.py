@@ -4,9 +4,11 @@ from django.views import generic
 from .models import Category, Movie
 from cart.forms import CartAddMovieForm
 from django.db.models import Q
+from django.views.decorators.csrf import csrf_exempt
 
 
 # Create your views here.
+@csrf_exempt
 def index(request, category_slug=None):
 	#return HttpResponse("Hello, world. You're at the Movie Rent Store index.")
 	category = None
@@ -24,6 +26,7 @@ def index(request, category_slug=None):
 		'movies': movies
 		} )
 
+@csrf_exempt
 def movie_content(request, movie_id, slug):
 	#content = "This site use to display the detail of %s's movie!!"
 	movie = get_object_or_404(Movie,
@@ -35,6 +38,7 @@ def movie_content(request, movie_id, slug):
 		'movie/detail.html', {'movie': movie,
 		'cart_movie_form': cart_movie_form})
 
+@csrf_exempt
 def searchbar(request):
 	if request.method == 'GET':
 		search = request.GET.get('search')

@@ -4,10 +4,12 @@ from django.views.decorators.http import require_POST
 from movieRent.models import Movie
 from .cart import Cart
 from .forms import CartAddMovieForm
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 
 #require_POST
+@csrf_exempt
 def cart_add(request, movie_id):
 	cart = Cart(request)
 	movie = get_object_or_404(Movie, id=movie_id)
@@ -18,13 +20,13 @@ def cart_add(request, movie_id):
 				quantity=cd['quantity'],
 				update_quantity=cd['update'])
 		return redirect('cart:cart_detail')
-
+@csrf_exempt
 def cart_remove(request, movie_id):
 	cart = Cart(request)
 	movie = get_object_or_404(Movie, id=movie_id)
 	cart.remove(movie)
 	return redirect('cart:cart_detail')
-
+@csrf_exempt
 def cart_detail(request):
 	cart = Cart(request)
 	# When use For in, it will start iterration and call '__iter__' 
